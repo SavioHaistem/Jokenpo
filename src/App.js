@@ -8,30 +8,48 @@ import { StartButton } from "./components/StartButton";
 
 function App() {
 
-    const displays = [
-        { element: <StartButton Click={GoToShow}/>, active: true },
-        { element: <PlayerChooseBox player={1}/>, active: false },
-        { element: <PlayerChooseBox player={1}/>, active: false }
-    ];
-    const [DoShow, setDoShow] = useState(displays[0]);
+    const [displays, setDisplays] = useState([
+        { key: 0, elemento: <StartButton onClick={ChangeDisplay}/>, active: true },
+        { key: 1, elemento: <PlayerChooseBox onClick={ChangeDisplay} player={1}></PlayerChooseBox>, active: false },
+        { key: 2, elemento: <PlayerChooseBox onClick={ChangeDisplay} player={2}></PlayerChooseBox>, active: false },
+    ]);
 
-    const ToShow = {
-        display: displays[1],
-        setToShow() {
-            this.display = displays.find(display => display.active == true)
+    const [DoShow, setDoShow] = useState(<StartButton Click={ChangeDisplay}/>)
+
+    function ChangeDoShow() {
+        return setDoShow(displays.find(display => display.active == true).elemento)
+    }
+
+    function ChangeDisplay() {
+
+        var NextActiveItem = 0;
+    
+        for ( let i = 0; i < displays.length; i++) {
+            if ( displays[i].active == true ) {
+                
+                i >= 2 ? NextActiveItem = 0 :  NextActiveItem = i + 1;
+                displays[i].active = false;
+                console.log(i)
+            }
         }
+        
+            setDisplays(displays.map(display => { 
+                    if(display.key == NextActiveItem) {
+                            display.active = true
+                    }
+                    return display
+                }
+            )
+        );
     };
 
-    function GoToShow() {
-        setDoShow(ToShow.display)
-    };
+    useEffect(()=>{ChangeDoShow()}, [displays])
+    useEffect(()=>{console.log('mudou')}, [DoShow])
 
-    useEffect(()=>{GoToShow}, [ToShow.display]);
-    useEffect(()=>{ToShow.setToShow}, [displays]);
 
     return(
         <>  
-            {DoShow.element}
+            {DoShow}
         </>
     )
 }

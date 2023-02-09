@@ -1,5 +1,4 @@
 import React from "react";
-import { ChooseButton } from "./ChooseButton";
 
 export function PlayerChooseBox(props) {
     return(
@@ -7,8 +6,7 @@ export function PlayerChooseBox(props) {
             <h1 className="PlayerName">
                 Jogador { props.player }
             </h1>
-
-            <ChooseButton />
+            <button onClick={props.onClick}> Confirmar </button>
         </div>
     )
 }
