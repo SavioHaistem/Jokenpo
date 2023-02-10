@@ -8,32 +8,31 @@ import { StartButton } from "./components/StartButton";
 
 function App() {
 
-    const [displays, setDisplays] = useState([
-        { key: 0, elemento: <StartButton onClick={ChangeDisplay}/>, active: true },
-        { key: 1, elemento: <PlayerChooseBox onClick={ChangeDisplay} player={1}></PlayerChooseBox>, active: false },
-        { key: 2, elemento: <PlayerChooseBox onClick={ChangeDisplay} player={2}></PlayerChooseBox>, active: false },
+    const [Displays, setDisplays] = useState([
+        { key: 0, element: <StartButton onClick={ChangeDisplay}/>, active: true },
+        { key: 1, element: <PlayerChooseBox onClick={ChangeDisplay} player={1}></PlayerChooseBox>, active: false },
+        { key: 2, element: <PlayerChooseBox onClick={ChangeDisplay} player={2}></PlayerChooseBox>, active: false },
     ]);
 
-    const [DoShow, setDoShow] = useState(<StartButton Click={ChangeDisplay}/>)
+    const [DoShow, setDoShow] = useState('')
 
-    function ChangeDoShow() {
-        return setDoShow(displays.find(display => display.active == true).elemento)
+    function ToggleDoShow() {
+        return setDoShow(Displays.find(display => display.active == true).element)
     }
 
     function ChangeDisplay() {
 
         var NextActiveItem = 0;
     
-        for ( let i = 0; i < displays.length; i++) {
-            if ( displays[i].active == true ) {
+        for ( let i = 0; i < Displays.length; i++) {
+            if ( Displays[i].active == true ) {
                 
                 i >= 2 ? NextActiveItem = 0 :  NextActiveItem = i + 1;
-                displays[i].active = false;
-                console.log(i)
+                Displays[i].active = false;
             }
         }
         
-            setDisplays(displays.map(display => { 
+            setDisplays(Displays.map(display => { 
                     if(display.key == NextActiveItem) {
                             display.active = true
                     }
@@ -43,10 +42,7 @@ function App() {
         );
     };
 
-    useEffect(()=>{ChangeDoShow()}, [displays])
-    useEffect(()=>{console.log('mudou')}, [DoShow])
-
-
+    useEffect(()=>{ToggleDoShow()}, [Displays])
     return(
         <>  
             {DoShow}
