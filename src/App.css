@@ -9,11 +9,18 @@ body {
     justify-content: center;
     align-items: center;
 }
-.StartButton {
+.CircularButton {
+    margin: 0px auto 40px;
     border-radius: 80px;
     border: none;
     width: 200px;
     height: 50px;
+    transition: all 0.2s;
+}
+.CircularButton:hover {
+    cursor: pointer;
+    width: 205px;
+    height: 55px;
 }
 .PlayerName {
     grid-area: PlayerName;
@@ -21,13 +28,17 @@ body {
 .ChooseList {
     grid-area: ChooseList;
 }
-.PlayerChooseBox {
+.CircularButton {
+    grid-area: CircularButton;
+}
+.AppBox {
     display: grid;
-    grid-template-columns: 55vw;
-    grid-template-rows: 100px 300px;
+    grid-template-columns: 480px;
+    grid-template-rows: 100px 200px 100px;
     grid-template-areas: 
     "PlayerName"
-    "ChooseList";
+    "ChooseList"
+    "CircularButton";
     align-items: center;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     color: rgb(98, 0, 255);
@@ -44,6 +55,12 @@ body {
     align-items: center;
     border-radius: 80px;
     background-color: rgb(137, 137, 137);
+    transition: all 0.2s;
+}
+.ChooseButton:hover {
+    cursor: pointer;
+    width: 90px;
+    height: 90px;
 }
 .ChosseList {
     margin: auto;

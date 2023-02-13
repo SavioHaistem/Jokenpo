@@ -16,10 +16,18 @@ export function Testar( player1, player2 ) {
 
 }
 
-export function Result(EscolhaP1, EscolhaP2) {
+function Result(EscolhaP1, EscolhaP2) {
     const Player_1 = new Player(EscolhaP1)
     const Player_2 = new Player(EscolhaP2)
 
 
     return Testar(Player_1, Player_2)
+}
+
+export function ResultBox(props) {
+    return(
+        <div className="AppBox">
+
+        </div>
+    )
 }
