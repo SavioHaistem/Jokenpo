@@ -1,4 +1,5 @@
 import { Player } from '../engine/creator'
+import React from 'react'
 
 const Alert = (mensagem) => {
     console.log(mensagem)
@@ -27,7 +28,6 @@ function Result(EscolhaP1, EscolhaP2) {
 export function ResultBox(props) {
     return(
         <div className="AppBox">
-
         </div>
     )
 }

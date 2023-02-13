@@ -1,22 +1,43 @@
-import React, { useEffect } from "react";
-import { useState } from "react";
+import React, { useEffect, useState } from "react";
 import './App.css';
-import { Pedra, Papel, Tesoura } from "./engine/creator";
 import { PlayerChooseBox } from "./components/playerchoose";
 import { StartButton } from "./components/StartButton";
 import { ChooseButton } from "./components/ChooseButton";
+import { ResultBox } from "./components/ResultBox";
 
 function App() {
 
-    const [PlayerOneChoose, setPlayerOneChoose] = useState();
-    const [PlayerTwoChoose, setPlayerTwoChoose] = useState();
+    const [PlayerOneChoose, setPlayerOneChoose] = useState('');
+    const [PlayerTwoChoose, setPlayerTwoChoose] = useState('');
 
-    const [Displays, setDisplays] = useState([
-        { key: 0, element: <StartButton onClick={ChangeDisplay}/>, active: true },
-        { key: 1, element: <PlayerChooseBox onClick={ChangeDisplay} player={1}><ChooseButton/></PlayerChooseBox>, active: false },
-        { key: 2, element: <PlayerChooseBox onClick={ChangeDisplay} player={2}><ChooseButton/></PlayerChooseBox>, active: false },
-        { key: 3, element: <PlayerChooseBox onClick={ChangeDisplay} player={3}><ChooseButton/></PlayerChooseBox>, active: false }
-    ]);
+    const [Displays, setDisplays] = useState(
+    
+    [
+
+        { 
+            key: 0, 
+            element: <StartButton onClick={ChangeDisplay}/>, 
+            active: true 
+        },
+        { 
+            key: 1, 
+            element: <PlayerChooseBox onClick={ChangeDisplay} player={1}>
+                        <ChooseButton setChoose={value => setPlayerOneChoose(value)} /> 
+                    </PlayerChooseBox>, 
+            active: false 
+        },
+        { 
+            key: 2, 
+            element: <PlayerChooseBox onClick={ChangeDisplay} player={2}>
+                        <ChooseButton setChoose={value => setPlayerTwoChoose(value)}/> 
+                    </PlayerChooseBox>, 
+            active: false 
+        },
+
+        { key: 3, element: <ResultBox/>, active: false }
+
+    ]
+);
 
     const [DoShow, setDoShow] = useState('')
 
@@ -48,8 +69,10 @@ function App() {
 
     useEffect(()=>{ToggleDoShow()}, [Displays])
     return(
-        <>  
-            {DoShow}
+        <>
+            { PlayerOneChoose }
+            { PlayerTwoChoose }
+            { DoShow }
         </>
     )
 }

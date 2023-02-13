@@ -6,7 +6,7 @@ export function PlayerChooseBox(props) {
             <h1 className="PlayerName">
                 Jogador { props.player }
             </h1>
-            {props.children}
+            { props.children }
             <button className='CircularButton' onClick={props.onClick}> Confirmar </button>
         </div>
     )
