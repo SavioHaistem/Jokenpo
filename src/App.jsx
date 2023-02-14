@@ -33,9 +33,11 @@ function App() {
                     </PlayerChooseBox>, 
             active: false 
         },
-
-        { key: 3, element: <ResultBox/>, active: false }
-
+        { 
+            key: 3, 
+            element: <ResultBox/>, 
+            active: false 
+        }
     ]
 );
 
@@ -70,8 +72,8 @@ function App() {
     useEffect(()=>{ToggleDoShow()}, [Displays])
     return(
         <>
-            { PlayerOneChoose }
-            { PlayerTwoChoose }
+            { PlayerOneChoose.name }
+            { PlayerTwoChoose.name }
             { DoShow }
         </>
     )
