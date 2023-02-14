@@ -7,7 +7,7 @@ import { ResultBox } from "./components/ResultBox";
 
 function App() {
 
-    const [PlayerOneChoose, setPlayerOneChoose] = useState('');
+    const [PlayerOneChoose, setPlayerOneChoose] = useState('initial');
     const [PlayerTwoChoose, setPlayerTwoChoose] = useState('');
 
     const [Displays, setDisplays] = useState(
@@ -22,20 +22,20 @@ function App() {
         { 
             key: 1, 
             element: <PlayerChooseBox onClick={ChangeDisplay} player={1}>
-                        <ChooseButton setChoose={value => setPlayerOneChoose(value)} /> 
+                        <ChooseButton setChoose={(value) => setPlayerOneChoose(value)} />
                     </PlayerChooseBox>, 
             active: false 
         },
         { 
             key: 2, 
             element: <PlayerChooseBox onClick={ChangeDisplay} player={2}>
-                        <ChooseButton setChoose={value => setPlayerTwoChoose(value)}/> 
+                        <ChooseButton setChoose={value => setPlayerTwoChoose(value)} />
                     </PlayerChooseBox>, 
             active: false 
         },
         { 
             key: 3, 
-            element: <ResultBox/>, 
+            element: <ResultBox Player1={PlayerOneChoose}/>, 
             active: false 
         }
     ]
@@ -43,9 +43,17 @@ function App() {
 
     const [DoShow, setDoShow] = useState('')
 
+    function ChangeChoice() {
+        setDisplays(Displays.map(display => {
+            if (display.key === 3) {
+                display.element = <ResultBox Player1={PlayerOneChoose}/>
+            } return display
+        }))
+    };
+
     function ToggleDoShow() {
         return setDoShow(Displays.find(display => display.active == true).element)
-    }
+    };
 
     function ChangeDisplay() {
 
@@ -69,11 +77,11 @@ function App() {
         );
     };
 
-    useEffect(()=>{ToggleDoShow()}, [Displays])
+    useEffect(()=> {ChangeChoice()}, [PlayerOneChoose, PlayerTwoChoose])
+    useEffect(()=> {ToggleDoShow()}, [Displays])
     return(
         <>
             { PlayerOneChoose.name }
-            { PlayerTwoChoose.name }
             { DoShow }
         </>
     )

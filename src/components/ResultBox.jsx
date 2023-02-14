@@ -1,5 +1,5 @@
 import { Player } from '../engine/creator'
-import React from 'react'
+import React, { useEffect } from 'react'
 
 const Alert = (mensagem) => {
     console.log(mensagem)
@@ -25,9 +25,11 @@ function Result(EscolhaP1, EscolhaP2) {
     return Testar(Player_1, Player_2)
 }
 
-export function ResultBox(props) {
-    return(
-        <div className="AppBox">
-        </div>
-    )
-}
+export function ResultBox({Player1}) {  
+    return (
+      <div className="AppBox">
+        <h1>{Player1.name}</h1>
+      </div>
+    );
+  }
+  

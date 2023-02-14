@@ -7,9 +7,9 @@ import { Tesoura, Pedra, Papel } from "../engine/creator";
 export function ChooseButton({setChoose}) {
     return(
         <ol className="ChosseList">
-            <div className="ChooseButton" onClick={()=>setChoose(Tesoura)}> <img src={TesouraIcon} alt="Tesoura" /> </div>
-            <div className="ChooseButton" onClick={()=>setChoose(Pedra)}> <img src={PedraIcon} alt="Tesoura" /> </div>
-            <div className="ChooseButton" onClick={()=>setChoose(Papel)}> <img src={PapelIcon} alt="Tesoura" /> </div>
+            <div className="ChooseButton" onClick={() => setChoose(Tesoura)}> <img src={TesouraIcon} alt="Tesoura" /> </div>
+            <div className="ChooseButton" onClick={() => setChoose(Pedra)}> <img src={PedraIcon} alt="Pedra" /> </div>
+            <div className="ChooseButton" onClick={() => setChoose(Papel)}> <img src={PapelIcon} alt="Papel" /> </div>
         </ol>
     )
 }
