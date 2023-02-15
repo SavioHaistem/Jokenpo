@@ -21,14 +21,14 @@ function App() {
         },
         { 
             key: 1, 
-            element: <PlayerChooseBox onClick={ChangeDisplay} player={1}>
+            element: <PlayerChooseBox player={1}>
                         <ChooseButton setChoose={(value) => setPlayerOneChoose(value)} />
                     </PlayerChooseBox>, 
             active: false 
         },
         { 
             key: 2, 
-            element: <PlayerChooseBox onClick={ChangeDisplay} player={2}>
+            element: <PlayerChooseBox player={2}>
                         <ChooseButton setChoose={value => setPlayerTwoChoose(value)} />
                     </PlayerChooseBox>, 
             active: false 
@@ -79,10 +79,10 @@ function App() {
                 }
             )
         );
+        ToggleDoShow()
     };
 
-    useEffect(()=> {ChangeChoice()}, [PlayerOneChoose, PlayerTwoChoose])
-    useEffect(()=> {ToggleDoShow()}, [Displays])
+    useEffect(()=> {ChangeChoice(), ChangeDisplay()}, [PlayerOneChoose, PlayerTwoChoose]);
     return(
         <>
             { DoShow }

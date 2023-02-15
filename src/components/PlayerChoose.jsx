@@ -7,7 +7,6 @@ export function PlayerChooseBox(props) {
                 Jogador { props.player }
             </h1>
             { props.children }
-            <button className='CircularButton' onClick={props.onClick}> Confirmar </button>
         </div>
     )
 }
