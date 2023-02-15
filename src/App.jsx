@@ -8,7 +8,7 @@ import { ResultBox } from "./components/ResultBox";
 function App() {
 
     const [PlayerOneChoose, setPlayerOneChoose] = useState('initial');
-    const [PlayerTwoChoose, setPlayerTwoChoose] = useState('');
+    const [PlayerTwoChoose, setPlayerTwoChoose] = useState('Initial');
 
     const [Displays, setDisplays] = useState(
     
@@ -35,7 +35,7 @@ function App() {
         },
         { 
             key: 3, 
-            element: <ResultBox Player1={PlayerOneChoose}/>, 
+            element: '', 
             active: false 
         }
     ]
@@ -46,7 +46,11 @@ function App() {
     function ChangeChoice() {
         setDisplays(Displays.map(display => {
             if (display.key === 3) {
-                display.element = <ResultBox Player1={PlayerOneChoose}/>
+                display.element = 
+                    <ResultBox
+                        PlayerOneChoose={{...PlayerOneChoose}}
+                        PlayerTwoChoose={{...PlayerTwoChoose}}
+                    />
             } return display
         }))
     };

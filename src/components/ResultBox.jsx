@@ -1,18 +1,22 @@
 import { Player } from '../engine/creator'
 import React, { useEffect } from 'react'
 
-const Alert = (mensagem) => {
-    console.log(mensagem)
+function Alert(props) {
+    return(
+        <>
+            {props}
+        </>
+    )
 }
 
 export function Testar( player1, player2 ) {
 
-    if ( player1.escolha == player2.escolha) {
-        Alert('EMPATE')
-    } else if ( player1.escolha.vantagem == player2.escolha.name ) {
-        Alert('Jogador Um venceu')
-    } else if ( player2.escolha.vantagem == player1.escolha.name ) {
-        Alert('Jogador Dois venceu')
+    if ( player1.name == player2.name) {
+        return 'Empate'
+    } else if ( player1.vantagem == player2.name ) {
+        return 'Jogador Um venceu'
+    } else if ( player2.vantagem == player1.name ) {
+        return 'Jogador Dois venceu'
     } else { console.log(player2.escolha, player1.escolha)}
 
 }
@@ -25,10 +29,11 @@ function Result(EscolhaP1, EscolhaP2) {
     return Testar(Player_1, Player_2)
 }
 
-export function ResultBox({Player1}) {  
+export function ResultBox({PlayerOneChoose, PlayerTwoChoose}) {
+
     return (
       <div className="AppBox">
-        <h1>{Player1.name}</h1>
+        {Testar(PlayerOneChoose, PlayerTwoChoose)}
       </div>
     );
   }
