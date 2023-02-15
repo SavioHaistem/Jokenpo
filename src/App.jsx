@@ -85,7 +85,6 @@ function App() {
     useEffect(()=> {ToggleDoShow()}, [Displays])
     return(
         <>
-            { PlayerOneChoose.name }
             { DoShow }
         </>
     )
