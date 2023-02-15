@@ -14,27 +14,32 @@ function App() {
     
     [
 
-        { 
-            key: 0, 
-            element: <StartButton onClick={ChangeDisplay}/>, 
-            active: true 
+        {
+            key: 0,
+            element: '{BaseApp}',
+            active: true
         },
         { 
             key: 1, 
+            element: <StartButton onClick={ChangeDisplay}/>, 
+            active: false 
+        },
+        { 
+            key: 2, 
             element: <PlayerChooseBox player={1}>
                         <ChooseButton setChoose={(value) => setPlayerOneChoose(value)} />
                     </PlayerChooseBox>, 
             active: false 
         },
         { 
-            key: 2, 
+            key: 3, 
             element: <PlayerChooseBox player={2}>
                         <ChooseButton setChoose={value => setPlayerTwoChoose(value)} />
                     </PlayerChooseBox>, 
             active: false 
         },
         { 
-            key: 3, 
+            key: 4, 
             element: '', 
             active: false 
         }
@@ -45,7 +50,7 @@ function App() {
 
     function ChangeChoice() {
         setDisplays(Displays.map(display => {
-            if (display.key === 3) {
+            if (display.key === 4) {
                 display.element = 
                     <ResultBox
                         PlayerOneChoose={{...PlayerOneChoose}}
@@ -66,7 +71,7 @@ function App() {
         for ( let i = 0; i < Displays.length; i++) {
             if ( Displays[i].active == true ) {
                 
-                i >= 3 ? NextActiveItem = 0 :  NextActiveItem = i + 1;
+                i >= 4 ? NextActiveItem = 0 :  NextActiveItem = i + 1;
                 Displays[i].active = false;
             }
         }
@@ -79,10 +84,10 @@ function App() {
                 }
             )
         );
-        ToggleDoShow()
     };
 
-    useEffect(()=> {ChangeChoice(), ChangeDisplay()}, [PlayerOneChoose, PlayerTwoChoose]);
+    useEffect(()=> {ChangeChoice(), ChangeDisplay()}, [PlayerOneChoose, PlayerTwoChoose])
+    useEffect(()=> {ToggleDoShow()}, [Displays])
     return(
         <>
             { DoShow }

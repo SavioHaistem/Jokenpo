@@ -28,17 +28,13 @@ body {
 .ChooseList {
     grid-area: ChooseList;
 }
-.CircularButton {
-    grid-area: CircularButton;
-}
 .AppBox {
     display: grid;
     grid-template-columns: 480px;
     grid-template-rows: 100px 200px 100px;
     grid-template-areas: 
     "PlayerName"
-    "ChooseList"
-    "CircularButton";
+    "ChooseList";
     align-items: center;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     color: rgb(98, 0, 255);
