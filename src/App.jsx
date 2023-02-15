@@ -55,6 +55,7 @@ function App() {
                     <ResultBox
                         PlayerOneChoose={{...PlayerOneChoose}}
                         PlayerTwoChoose={{...PlayerTwoChoose}}
+                        restart={ChangeDisplay}
                     />
             } return display
         }))
@@ -65,16 +66,20 @@ function App() {
     };
 
     function ChangeDisplay() {
-
         var NextActiveItem = 0;
-    
+
+        function ClearAllDisplays() {
+            setPlayerOneChoose('');
+            setPlayerTwoChoose('');
+            return NextActiveItem = 0;
+        };
+
         for ( let i = 0; i < Displays.length; i++) {
             if ( Displays[i].active == true ) {
-                
-                i >= 4 ? NextActiveItem = 0 :  NextActiveItem = i + 1;
+                i >= 4 ? ClearAllDisplays() :  NextActiveItem = i + 1;
                 Displays[i].active = false;
-            }
-        }
+            };
+        };
         
             setDisplays(Displays.map(display => { 
                     if(display.key == NextActiveItem) {

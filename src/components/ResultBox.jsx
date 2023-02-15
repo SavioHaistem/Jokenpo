@@ -1,13 +1,4 @@
-import { Player } from '../engine/creator'
-import React, { useEffect } from 'react'
-
-function Alert(props) {
-    return(
-        <>
-            {props}
-        </>
-    )
-}
+import React from 'react';
 
 export function Testar( player1, player2 ) {
 
@@ -19,22 +10,16 @@ export function Testar( player1, player2 ) {
         return 'Jogador Dois venceu'
     } else { console.log(player2.escolha, player1.escolha)}
 
-}
+};
 
-function Result(EscolhaP1, EscolhaP2) {
-    const Player_1 = new Player(EscolhaP1)
-    const Player_2 = new Player(EscolhaP2)
-
-
-    return Testar(Player_1, Player_2)
-}
-
-export function ResultBox({PlayerOneChoose, PlayerTwoChoose}) {
+export function ResultBox({PlayerOneChoose, PlayerTwoChoose, restart}) {
 
     return (
-      <div className="AppBox">
-        {Testar(PlayerOneChoose, PlayerTwoChoose)}
-      </div>
+        <>    
+          <div className="AppBox">
+            {Testar(PlayerOneChoose, PlayerTwoChoose)}
+            <button className='CircularButton' onClick={restart}> Reiniciar </button>
+          </div>
+        </>
     );
-  }
-  
+};
