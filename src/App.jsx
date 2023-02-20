@@ -5,11 +5,14 @@ import { StartButton } from "./components/StartButton";
 import { ChooseButton } from "./components/ChooseButton";
 import { ResultBox } from "./components/ResultBox";
 
-function App() {
+function Jokenpo() {
 
+    //Estes estados armazenam as escolhas dos usuários
     const [PlayerOneChoose, setPlayerOneChoose] = useState('initial');
     const [PlayerTwoChoose, setPlayerTwoChoose] = useState('Initial');
 
+    //Este estado armazena os componentes Pai que serão exibidos atravez da propriedade
+    //active que irá dizer qual item deverá ser exibido
     const [Displays, setDisplays] = useState(
     
     [
@@ -21,7 +24,7 @@ function App() {
         },
         { 
             key: 1, 
-            element: <StartButton onClick={ChangeDisplay}/>, 
+            element: <StartButton onClick={ComponentDidUpdate}/>, 
             active: false 
         },
         { 
@@ -46,37 +49,49 @@ function App() {
     ]
 );
 
+    //Este estado é responsável por exibir o componente que
+    //receber a propriedade actived: true
     const [DoShow, setDoShow] = useState('')
 
-    function ChangeChoice() {
+    //Esta função é responsável por armazenar a escolha do usuário no momento
+    //que ela for feita.
+    function UpdateChoices() {
         setDisplays(Displays.map(display => {
             if (display.key === 4) {
                 display.element = 
                     <ResultBox
                         PlayerOneChoose={{...PlayerOneChoose}}
                         PlayerTwoChoose={{...PlayerTwoChoose}}
-                        restart={ChangeDisplay}
+                        restart={ComponentDidUpdate}
                     />
             } return display
         }))
     };
 
-    function ToggleDoShow() {
+    //Esta função é responsavél por montar o componente que receber a 
+    //propriedade true no momente que ele receber
+    function ComponentDidMount() {
         return setDoShow(Displays.find(display => display.active == true).element)
     };
 
-    function ChangeDisplay() {
+    //Esta função é responsável por atualizar o componente que receberá a propriedade
+    // actived true
+    function ComponentDidUpdate() {
         var NextActiveItem = 0;
 
-        function ClearAllDisplays() {
+        //Esta função limpará as escolhas dos usuários quando o app for
+        //reinicializado
+        function ClearAllChoices() {
             setPlayerOneChoose('');
             setPlayerTwoChoose('');
             return NextActiveItem = 0;
         };
 
+        //Esta função controla para qual componente iremos mudar e
+        //a reinicialização do app
         for ( let i = 0; i < Displays.length; i++) {
             if ( Displays[i].active == true ) {
-                i >= 4 ? ClearAllDisplays() :  NextActiveItem = i + 1;
+                i >= 4 ? ClearAllChoices() :  NextActiveItem = i + 1;
                 Displays[i].active = false;
             };
         };
@@ -91,8 +106,10 @@ function App() {
         );
     };
 
-    useEffect(()=> {ChangeChoice(), ChangeDisplay()}, [PlayerOneChoose, PlayerTwoChoose])
-    useEffect(()=> {ToggleDoShow()}, [Displays])
+    //Estes hooks observam as variaveis para atualizar os valores e componentes
+    //no momento que são alterados.
+    useEffect(()=> {UpdateChoices(), ComponentDidUpdate()}, [PlayerOneChoose, PlayerTwoChoose])
+    useEffect(()=> {ComponentDidMount()}, [Displays])
     return(
         <>
             { DoShow }
@@ -100,4 +117,4 @@ function App() {
     )
 }
 
-export default App;
+export default Jokenpo;
