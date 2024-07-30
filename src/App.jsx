@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import './App.css';
-import { PlayerChooseBox } from "./components/playerchoose";
+import { PlayerChooseBox } from "./components/PlayerChoose";
 import { StartButton } from "./components/StartButton";
 import { ChooseButton } from "./components/ChooseButton";
 import { ResultBox } from "./components/ResultBox";
@@ -112,6 +112,7 @@ function Jokenpo() {
     useEffect(()=> {ComponentDidMount()}, [Displays])
     return(
         <>
+        adhkfah
             { DoShow }
         </>
     )
